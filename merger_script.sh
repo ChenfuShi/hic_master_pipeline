@@ -20,4 +20,4 @@ module load tools/java/1.8.0
 module load compilers/gcc/8.2.0
 
 
-python ./hic_merger.py -i A -i B -i C -o output
+python hic_merger.py -i test_ARIMA -i CD4_arima_sample1_from_jenny_ARIMA -i CD4_arima_sample2_from_jenny_ARIMA -o test_merging_CD4_ARIMA

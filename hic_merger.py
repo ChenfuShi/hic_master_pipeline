@@ -9,7 +9,7 @@ from random import random
 from time import sleep
 import argparse
 import logging
-from python_bits import merging, hic_pro, compartments
+from python_bits import merging, hic_pro, compartments, matrix_ontad
 
 
 
@@ -52,14 +52,18 @@ if __name__=="__main__":
             logging.error(f"Sample {n} not found in HiC-Pro outputs")
             raise Exception
 
-    # # merge the valid pairs
-    # merged_validpairs = merging.merge_validpairs(Configuration, test_files)
+    # merge the valid pairs
+    merged_validpairs = merging.merge_validpairs(Configuration, test_files)
 
-    # # run juicebox to create the merged hic file
-    # hic_pro.run_juicebox(Configuration, merged_validpairs)
+    # run juicebox to create the merged hic file
+    hic_pro.run_juicebox(Configuration, merged_validpairs)
 
-    # # get compartments
-    # compartments.call_compartments(Configuration)
+    # get compartments
+    compartments.call_compartments(Configuration)
 
     # create sparse matrixes from valid pair file
     hic_pro.make_merged_matrixes(Configuration)
+
+    # run matrixes
+    Configuration.HiC_pro_outs_dir = Configuration.merged_sparsemat
+    matrix_ontad.generate_mat_ontad(Configuration)
