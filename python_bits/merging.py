@@ -21,7 +21,7 @@ def merge_validpairs(Configuration, inputs):
         input_files.append(os.path.join(Configuration.HiC_pro_outs_dir,i,"hic_results","data",i,i+".allValidPairs"))
     comb_inputs = " ".join(input_files)
 
-    output_file = os.path.join(merged_outdir, i + ".merged.allValidPairs")
+    output_file = os.path.join(merged_outdir, Configuration.merged_output + ".allValidPairs")
     with open(output_file, "w") as combined_output:
         subprocess.run(f"cat {comb_inputs}",shell=True,stdout=combined_output, cwd = Configuration.merged_validpairs)
     logging.info("Merging valid pairs files finished")

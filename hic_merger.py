@@ -57,7 +57,7 @@ if __name__=="__main__":
 
     # run juicebox to create the merged hic file
     hic_pro.run_juicebox(Configuration, merged_validpairs)
-
+    
     # get compartments
     compartments.call_compartments(Configuration)
 

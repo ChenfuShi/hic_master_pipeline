@@ -39,6 +39,7 @@ def _GET_compartments_corr(gene_density,file, resolution = 100000):
         all_chr = all_chr.append(current_eigen,sort=False)
         
     output = all_chr[["chr","start","end",0]].reset_index(drop=True)
+    output = output.fillna(0)
     return output
 
 
