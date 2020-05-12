@@ -20,4 +20,4 @@ module load tools/java/1.8.0
 module load compilers/gcc/8.2.0
 
 
-python hic_merger.py -i HiC_RA_R_1_HIND -i HiC_RA_R_2_HIND -i HiC_RA_R3_HIND -o Priya_HiC_remission_HIND
+python hic_merger.py -i Newman_2_HiC_ARIMA -i Newman_3_HiC_ARIMA -o Newman_patients_ARIMA

@@ -43,6 +43,7 @@ def _run_fastp_batch(lanes,Configuration):
     output_dir = os.path.join(Configuration.Trimmed_dir,Configuration.file_to_process,Configuration.file_to_process)
     quality_dir = os.path.join(Configuration.Reads_quality_dir,Configuration.file_to_process)
     os.makedirs(output_dir,exist_ok=True)
+    os.makedirs(quality_dir,exist_ok=True)
     for lane in lanes:
         proc = subprocess.Popen(["fastp","-i",os.path.join(input_dir,lane)+"R1.fastq.gz","-I",os.path.join(input_dir,lane)+"R2.fastq.gz",
             "-o",os.path.join(output_dir,lane)+"R1.fastq.gz","-O",os.path.join(output_dir,lane)+"R2.fastq.gz",

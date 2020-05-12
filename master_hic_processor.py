@@ -25,8 +25,8 @@ if __name__=="__main__":
                         help='input folder to force. Will overwrite all ouputs')
     parser.add_argument("-c",'--config', dest='config', action='store', required=False,
                         help='Change configuration file')
-    parser.add_argument("-s",'--step', dest='step', action='store', required=False,
-                        help='chose step instead of running everything')
+    parser.add_argument("-s",'--steps', dest='step', action='store', required=False, nargs="+",
+                        help='chose steps instead of running everything')
 
 	# parse arguments
     args = parser.parse_args()
@@ -45,15 +45,16 @@ if __name__=="__main__":
         sleep(random()*20)
         all_processed = os.listdir(Configuration.TADs_dir)
         # chose the first one of the ones that are still not processed and run 
-        if len(all_raws_present) == len(all_processed):
-            logging.error("There were no new files to process")
-            raise Exception
-
         for i in all_raws_present:
             if i not in all_processed:
                 os.makedirs(os.path.join(Configuration.TADs_dir,i),exist_ok=True)
                 Configuration.file_to_process = i
                 break
+
+        if Configuration.file_to_process == None:
+            logging.error("There were no new files to process")
+            raise Exception
+        
     else:
         Configuration.file_to_process = args.infile
         os.makedirs(os.path.join(Configuration.TADs_dir,Configuration.file_to_process),exist_ok=True)
@@ -78,5 +79,15 @@ if __name__=="__main__":
 
         logging.info("pipeline completed")
         
-    elif args.step == "compartments":
-        compartments.call_compartments(Configuration)
+    else:
+        if "trimming" in args.step:
+            trimming.run_fastp(Configuration)
+        if "hicpro" in args.step:
+            hic_pro.run_hic_pro(Configuration)
+        if "juicebox" in args.step:
+            hic_pro.run_juicebox(Configuration)
+        if "onTAD" in args.step:
+            matrix_ontad.generate_mat_ontad(Configuration)
+        if "compartments" in args.step:
+            compartments.call_compartments(Configuration)
+
