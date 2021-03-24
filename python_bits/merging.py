@@ -13,6 +13,7 @@ import subprocess
 def merge_validpairs(Configuration, inputs):
     """take inputs and cat into a merged valid pairs file"""
     logging.info("Merging valid pairs files")
+    logging.info(inputs)
     merged_outdir = os.path.join(Configuration.merged_validpairs,Configuration.merged_output,Configuration.merged_output)
     os.makedirs(merged_outdir, exist_ok=True)
 

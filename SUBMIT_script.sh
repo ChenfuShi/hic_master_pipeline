@@ -4,7 +4,7 @@
 #$ -o /mnt/iusers01/jw01/mdefscs4/psa_functional_genomics/master_HiC_analyzer/master_pipeline/logs
 
 #$ -t 1-1
-
+INDEX=$((SGE_TASK_ID-1))
 # CD to directory
 cd /mnt/iusers01/jw01/mdefscs4/psa_functional_genomics/master_HiC_analyzer/master_pipeline
 
@@ -20,4 +20,5 @@ module load tools/java/1.8.0
 module load compilers/gcc/8.2.0
 
 
+sleep $(($INDEX*10))
 python ./master_hic_processor.py --config CSF_chenfu_config.json

@@ -42,7 +42,7 @@ if __name__=="__main__":
         all_raws_present = os.listdir(Configuration.RAW_input_dir)
 
         # randomly wait a little bit of time to make sure we don't crash into eachother
-        sleep(random()*20)
+        # sleep(random()*20)
         all_processed = os.listdir(Configuration.TADs_dir)
         # chose the first one of the ones that are still not processed and run 
         for i in all_raws_present:
