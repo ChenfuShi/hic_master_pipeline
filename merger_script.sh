@@ -10,11 +10,12 @@ cd /mnt/iusers01/jw01/mdefscs4/psa_functional_genomics/master_HiC_analyzer/maste
 
 
 # activate all neeeded modules and packages
-source activate personal_software
+# source activate personal_software
+source activate /mnt/iusers01/jw01/mdefscs4/communal_software/HiC-Pro/conda_hicpro3
 # this contains fastp, ontad, bedtools
 # other stuff for hicpro is automatically used
 
-module load apps/R/3.5.3/gcc-8.2.0+lapack-3.5.0+blas-3.6.0
+# module load apps/R/3.5.3/gcc-8.2.0+lapack-3.5.0+blas-3.6.0
 
 module load tools/java/1.8.0
 module load compilers/gcc/8.2.0

@@ -16,8 +16,8 @@ import random
 
 def generate_mat_ontad(Configuration):
 
-    # this is a fucking hack
-    python2_loc = "/mnt/iusers01/jw01/mdefscs4/psa_functional_genomics/HiChIP_test/software/HiChIP_test2/bin/python"
+    # this is a fucking hack, not needed anymore because he updated to python 3
+    # python2_loc = "/mnt/iusers01/jw01/mdefscs4/psa_functional_genomics/HiChIP_test/software/HiChIP_test2/bin/python"
 
     chromosomes=["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","X"]
     chr_size=["248956422","242193529","198295559","190214555","181538259","170805979","159345973","145138636","138394717","133797422","135086622","133275309","114364328","107043718","101991189","90338345","83257441","80373285","58617616","64444167","46709983","50818468","156040895"]
@@ -31,7 +31,7 @@ def generate_mat_ontad(Configuration):
             Configuration.file_to_process,"iced",resolution,Configuration.file_to_process + "_" +resolution + "_iced.matrix")
         mat_outdir = os.path.join(Configuration.Matrix_dir,Configuration.file_to_process,resolution)
         os.makedirs(mat_outdir,exist_ok=True)
-        subprocess.run([python2_loc,Configuration.hicpro2dense_loc,"-b",abs_bed,matrixes,"--perchr"],cwd=mat_outdir)
+        subprocess.run(["python",Configuration.hicpro2dense_loc,"-b",abs_bed,matrixes,"--perchr"],cwd=mat_outdir)
 
         hic_pro_dense_matrix_loc = os.path.join(os.path.join(Configuration.HiC_pro_outs_dir,Configuration.file_to_process,"hic_results","matrix",
             Configuration.file_to_process,"iced",resolution))

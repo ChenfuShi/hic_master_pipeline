@@ -14,7 +14,7 @@ from random import random
 from time import sleep
 import argparse
 import logging
-from python_bits import trimming, hic_pro, matrix_ontad, compartments
+from python_bits import trimming, hic_pro, matrix_ontad, compartments, cleanup
 
 
 if __name__=="__main__":
@@ -77,6 +77,9 @@ if __name__=="__main__":
         # get compartments
         compartments.call_compartments(Configuration)
 
+        # compress hi-c pro stuff
+        cleanup.cleanup(Configuration)
+
         logging.info("pipeline completed")
         
     else:
@@ -90,4 +93,7 @@ if __name__=="__main__":
             matrix_ontad.generate_mat_ontad(Configuration)
         if "compartments" in args.step:
             compartments.call_compartments(Configuration)
+        if "cleanup" in args.step:
+            cleanup.cleanup(Configuration)
+
 

@@ -9,7 +9,7 @@ from random import random
 from time import sleep
 import argparse
 import logging
-from python_bits import merging, hic_pro, compartments, matrix_ontad
+from python_bits import merging, hic_pro, compartments, matrix_ontad, cleanup
 
 
 
@@ -67,3 +67,6 @@ if __name__=="__main__":
     # run matrixes
     Configuration.HiC_pro_outs_dir = Configuration.merged_sparsemat
     matrix_ontad.generate_mat_ontad(Configuration)
+
+    # compress hi-c pro stuff
+    cleanup.cleanup(Configuration)
