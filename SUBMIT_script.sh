@@ -22,4 +22,4 @@ module load compilers/gcc/8.2.0
 
 
 sleep $(($INDEX*20))
-python ./master_hic_processor.py --config CSF_chenfu_config.json --input PSA4944_CD4_ARIMA --step juicebox
+python ./master_hic_processor.py --config CSF_chenfu_config.json --input Patient1CD4_ARIMA 

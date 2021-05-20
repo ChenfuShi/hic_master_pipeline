@@ -19,8 +19,9 @@ def merge_validpairs(Configuration, inputs):
 
     input_files = []
     for i in inputs:
-        ls_dir = os.listdir(os.path.join(Configuration.HiC_pro_outs_dir,i,"hic_results","data",i))
-        input_files.append([x for x in ls_dir if "allValidPairs" in x][0]) # assume that there is only one file with this format
+        hic_pro_dir = os.path.join(Configuration.HiC_pro_outs_dir,i,"hic_results","data",i)
+        ls_dir = os.listdir(hic_pro_dir)
+        input_files.append(os.path.join(hic_pro_dir,[x for x in ls_dir if "allValidPairs" in x][0])) # assume that there is only one file with this format
     check_compressed = [x.endswith(".gz") for x in input_files]
     comb_inputs = " ".join(input_files)
     if all(check_compressed): 

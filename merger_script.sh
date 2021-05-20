@@ -2,7 +2,7 @@
 #$ -pe smp.pe 8
 #$ -j y
 #$ -o /mnt/iusers01/jw01/mdefscs4/psa_functional_genomics/master_HiC_analyzer/master_pipeline/logs
-
+#$ -l mem256
 #$ -t 1-1
 
 # CD to directory
@@ -20,7 +20,11 @@ source activate /mnt/iusers01/jw01/mdefscs4/communal_software/HiC-Pro/conda_hicp
 module load tools/java/1.8.0
 module load compilers/gcc/8.2.0
 
-python hic_merger.py -i control1CD14_ARIMA -i control2CD14_ARIMA -i control3CD14_ARIMA -i control4CD14_ARIMA -i control5CD14_ARIMA -o control_CD14_ARIMA
+# python hic_merger.py -i control1CD14_ARIMA -i control2CD14_ARIMA -i control3CD14_ARIMA -i control4CD14_ARIMA -i control5CD14_ARIMA -i Patient1CD14_ARIMA -i Patient2CD14_ARIMA -i Patient3CD14_ARIMA -i Patient5CD14_ARIMA -i Patient6CD14_ARIMA -i Patient7CD14_ARIMA -i Patient8CD14_ARIMA -i Patient9CD14_ARIMA -i Patient10CD14_ARIMA -o ALL_CD14_ARIMA
+
+python hic_merger.py -i control1CD4_ARIMA -i control2CD4_ARIMA -i control3CD4_ARIMA -i control4CD4_ARIMA -i control5CD4_ARIMA -i Patient1CD4_ARIMA -i Patient2CD4_ARIMA -i Patient3CD4_ARIMA -i Patient5CD4_ARIMA -i Patient6CD4_ARIMA -i Patient7CD4_ARIMA -i Patient8CD4_ARIMA -i Patient9CD4_ARIMA -i Patient10CD4_ARIMA -o ALL_CD4_ARIMA
+
+# python hic_merger.py -i control1CD14_ARIMA -i control2CD14_ARIMA -i control3CD14_ARIMA -i control4CD14_ARIMA -i control5CD14_ARIMA -o control_CD14_ARIMA
 
 # python hic_merger.py -i control1CD4_ARIMA -i control2CD4_ARIMA -i control3CD4_ARIMA -i control4CD4_ARIMA -i control5CD4_ARIMA -o control_CD4_ARIMA
 

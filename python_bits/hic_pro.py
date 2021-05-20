@@ -36,10 +36,12 @@ def run_juicebox(Configuration,overwrite_hic = None):
     logging.info("Converting HiC-pro output to juicebox format")
     random_string =''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
 
-    hic_pro_output_dir = os.path.join(Configuration.HiC_pro_outs_dir, Configuration.file_to_process,"hic_results","data",Configuration.file_to_process)
-    hic_pro_output_file = [x for x in os.listdir(hic_pro_output_dir) if "allValidPairs" in x][0] # assume that there is only one file with this format
     if overwrite_hic:
         hic_pro_output_file = overwrite_hic
+    else:
+        hic_pro_output_dir = os.path.join(Configuration.HiC_pro_outs_dir, Configuration.file_to_process,"hic_results","data",Configuration.file_to_process)
+        hic_pro_output_file = os.path.join(hic_pro_output_dir,[x for x in os.listdir(hic_pro_output_dir) if "allValidPairs" in x][0]) # assume that there is only one file with this format
+        
     juicebox_output = os.path.join(Configuration.Juicebox_dir, Configuration.file_to_process)
     os.makedirs(juicebox_output,exist_ok=True)
     proc = subprocess.run([Configuration.hicpro2juicebox_loc,"-j",Configuration.juicer_tools_loc,

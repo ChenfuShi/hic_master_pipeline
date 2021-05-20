@@ -69,4 +69,4 @@ if __name__=="__main__":
     matrix_ontad.generate_mat_ontad(Configuration)
 
     # compress hi-c pro stuff
-    cleanup.cleanup(Configuration)
+    cleanup.cleanup(Configuration, obj = "merging")
