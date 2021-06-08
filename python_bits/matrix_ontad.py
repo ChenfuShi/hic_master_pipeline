@@ -33,10 +33,6 @@ def generate_mat_ontad(Configuration):
         os.makedirs(mat_outdir,exist_ok=True)
         subprocess.run(["python",Configuration.hicpro2dense_loc,"-b",abs_bed,matrixes,"--perchr"],cwd=mat_outdir)
 
-        hic_pro_dense_matrix_loc = os.path.join(os.path.join(Configuration.HiC_pro_outs_dir,Configuration.file_to_process,"hic_results","matrix",
-            Configuration.file_to_process,"iced",resolution))
-        # that piece of crap of script always puts output in that folder so have to move the files
-        subprocess.run("mv " + hic_pro_dense_matrix_loc + "/*dense.matrix " + mat_outdir,shell=True,cwd = hic_pro_dense_matrix_loc)
 
         logging.info(f"Running OnTad for {resolution} resolution")
         ontad_output = os.path.join(Configuration.TADs_dir,Configuration.file_to_process,resolution)
@@ -44,7 +40,9 @@ def generate_mat_ontad(Configuration):
         for cur_chro in range(len(chromosomes)):
             dense_mat = os.path.join(mat_outdir,Configuration.file_to_process +"_" +resolution + "_iced_chr" + chromosomes[cur_chro] + "_dense.matrix")
             cur_out = os.path.join(ontad_output,"OnTAD" + Configuration.file_to_process + "chr" + chromosomes[cur_chro])
-            subprocess.run([Configuration.OnTAD,dense_mat,"-o",cur_out,"-maxsz","100","-bedout",chromosomes[cur_chro],chr_size[cur_chro],resolution])
+            throwaway_file = os.path.join(mat_outdir, "OnTAD_output")
+            with open(os.path.join(ontad_output,"OnTAD_all_chr.bed"), "w") as ontad_throwaway:
+                subprocess.run([Configuration.OnTAD,dense_mat,"-o",cur_out,"-maxsz","100","-bedout",chromosomes[cur_chro],chr_size[cur_chro],resolution], stdout = ontad_throwaway)
 
         with open(os.path.join(ontad_output,"OnTAD_all_chr.bed"), "w") as combined_output:
             subprocess.run("cat OnTAD*.bed",shell=True,stdout=combined_output,cwd = ontad_output)

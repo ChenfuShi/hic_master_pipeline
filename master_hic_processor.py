@@ -25,7 +25,7 @@ if __name__=="__main__":
                         help='input folder to force. Will overwrite all ouputs')
     parser.add_argument("-c",'--config', dest='config', action='store', required=False,
                         help='Change configuration file')
-    parser.add_argument("-s",'--steps', dest='step', action='store', required=False, nargs="+",
+    parser.add_argument("-s",'--steps', dest='step', action='append', required=False,
                         help='chose steps instead of running everything')
 
 	# parse arguments
@@ -41,8 +41,6 @@ if __name__=="__main__":
     if args.infile == None:
         all_raws_present = os.listdir(Configuration.RAW_input_dir)
 
-        # randomly wait a little bit of time to make sure we don't crash into eachother
-        # sleep(random()*20)
         all_processed = os.listdir(Configuration.TADs_dir)
         # chose the first one of the ones that are still not processed and run 
         for i in all_raws_present:

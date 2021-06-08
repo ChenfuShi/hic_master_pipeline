@@ -23,8 +23,8 @@ if __name__=="__main__":
                         help='name of the output file', required=True)                  
     parser.add_argument("-c",'--config', dest='config', action='store', required=False,
                         help='Change configuration file')
-    parser.add_argument("-s",'--step', dest='step', action='store', required=False,
-                        help='chose step instead of running everything')
+    parser.add_argument("-s",'--steps', dest='step', action='append', required=False,
+                        help='chose steps instead of running everything')
 
 	# parse arguments
     args = parser.parse_args()

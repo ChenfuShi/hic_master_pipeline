@@ -20,6 +20,6 @@ source activate /mnt/iusers01/jw01/mdefscs4/communal_software/HiC-Pro/conda_hicp
 module load tools/java/1.8.0
 module load compilers/gcc/8.2.0
 
-
+# wait 20 seconds so that they don't crash into eachother
 sleep $(($INDEX*20))
-python ./master_hic_processor.py --config CSF_chenfu_config.json --input Patient1CD4_ARIMA 
+python ./master_hic_processor.py --config CSF_chenfu_config.json 
