@@ -24,7 +24,7 @@ if __name__=="__main__":
     parser.add_argument("-c",'--config', dest='config', action='store', required=False,
                         help='Change configuration file')
     parser.add_argument("-s",'--steps', dest='step', action='append', required=False,
-                        help='chose steps instead of running everything')
+                        help='chose steps instead of running everything. Currently not implemented')
 
 	# parse arguments
     args = parser.parse_args()
