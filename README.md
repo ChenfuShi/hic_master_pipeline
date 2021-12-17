@@ -4,7 +4,7 @@ SGE batch system, SUBMIT_script for running and merger_script for merging differ
 
 ### How to use:
 
-Generally there are a lot of parameters to set in the json config file. You can use CSF_chenfu_config.json as a baseline but you need to reconfigure the location of the scratch folders for your account.
+Generally there are a lot of parameters to set in the config.py file. These should work but you might need to reconfigure the location of the scratch folders for your account.
 
 The way this software works is that it checks for folders in the reads_here directory and then checks which folders exist in the TADs directory. It then choses one of the folders that are discrepant and analyses that. Once it choses which file to run it will create a folder in the TADs directory to hold that file for the other parallel scripts. The delay of 20 seconds is there to make sure two scripts don't collide into eachother. If you want to reset the run you need to remove the folder from the TADs directory or you can override the automatic process by inputing the folder as -i SAMPLE_PROTOCOL. you can also override steps to run by adding -s STEP_1 -s STEP_2 ....
 

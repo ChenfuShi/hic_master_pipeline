@@ -11,6 +11,8 @@ import subprocess
 from collections import defaultdict
 import string
 import random
+from python_bits.helpers import clean_dir
+import shutil
 
 def run_hic_pro(Configuration):
     """runs hic pro"""
@@ -20,6 +22,12 @@ def run_hic_pro(Configuration):
     trimmed_files = os.path.join(Configuration.Trimmed_dir,Configuration.file_to_process) # this will have a directory in it containing the files
     temp_loc = os.path.join(Configuration.HiC_pro_temp_dir, Configuration.file_to_process)
     final_loc = os.path.join(Configuration.HiC_pro_outs_dir, Configuration.file_to_process)
+    # empty directories in case they exist
+    if os.path.exists(temp_loc) and os.path.isdir(temp_loc):
+        shutil.rmtree(temp_loc)
+    if os.path.exists(final_loc) and os.path.isdir(final_loc):
+        shutil.rmtree(final_loc)
+
     logging.info("Running HiC_pro to temporary directory")
     proc = subprocess.run([Configuration.HiC_pro_loc,"-i",trimmed_files,
         "-o", temp_loc, "-c",configuration_file])
@@ -32,7 +40,9 @@ def run_hic_pro(Configuration):
 
 
 def run_juicebox(Configuration,overwrite_hic = None):
-    """runs juicebox converter"""
+    """runs juicebox converter
+    overwrite_hic: Use this file instead of the default one
+    """
     logging.info("Converting HiC-pro output to juicebox format")
     random_string =''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
 
@@ -44,6 +54,7 @@ def run_juicebox(Configuration,overwrite_hic = None):
         
     juicebox_output = os.path.join(Configuration.Juicebox_dir, Configuration.file_to_process)
     os.makedirs(juicebox_output,exist_ok=True)
+    clean_dir(juicebox_output)
     proc = subprocess.run([Configuration.hicpro2juicebox_loc,"-j",Configuration.juicer_tools_loc,
         "-i",hic_pro_output_file,"-t",os.path.join(Configuration.HiC_pro_temp_dir,random_string),"-g","hg38"],cwd = juicebox_output)
     logging.info("Conversion finished")
@@ -54,6 +65,7 @@ def make_merged_matrixes(Configuration):
     logging.info("running contact matrix building with merged valid pairs")
     merged_indir = os.path.join(Configuration.merged_validpairs,Configuration.merged_output)
     merged_outdir = os.path.join(Configuration.merged_sparsemat,Configuration.merged_output)
+    clean_dir(merged_outdir)
     configuration_file = _get_protocol(Configuration)
 
     proc = subprocess.run([Configuration.HiC_pro_loc,"-i",merged_indir,

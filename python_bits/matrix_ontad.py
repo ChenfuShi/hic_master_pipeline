@@ -11,7 +11,7 @@ import subprocess
 from collections import defaultdict
 import string
 import random
-
+from python_bits.helpers import clean_dir
 
 
 def generate_mat_ontad(Configuration):
@@ -31,12 +31,14 @@ def generate_mat_ontad(Configuration):
             Configuration.file_to_process,"iced",resolution,Configuration.file_to_process + "_" +resolution + "_iced.matrix")
         mat_outdir = os.path.join(Configuration.Matrix_dir,Configuration.file_to_process,resolution)
         os.makedirs(mat_outdir,exist_ok=True)
+        clean_dir(mat_outdir)
         subprocess.run(["python",Configuration.hicpro2dense_loc,"-b",abs_bed,matrixes,"--perchr"],cwd=mat_outdir)
 
 
         logging.info(f"Running OnTad for {resolution} resolution")
         ontad_output = os.path.join(Configuration.TADs_dir,Configuration.file_to_process,resolution)
         os.makedirs(ontad_output,exist_ok=True)
+        clean_dir(ontad_output)
         for cur_chro in range(len(chromosomes)):
             dense_mat = os.path.join(mat_outdir,Configuration.file_to_process +"_" +resolution + "_iced_chr" + chromosomes[cur_chro] + "_dense.matrix")
             cur_out = os.path.join(ontad_output,"OnTAD" + Configuration.file_to_process + "chr" + chromosomes[cur_chro])

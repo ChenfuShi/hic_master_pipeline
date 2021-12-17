@@ -23,8 +23,6 @@ if __name__=="__main__":
 
     parser.add_argument("-i",'--input', dest='infile', action='store', required=False,
                         help='input folder to force. Will overwrite all ouputs')
-    parser.add_argument("-c",'--config', dest='config', action='store', required=False,
-                        help='Change configuration file')
     parser.add_argument("-s",'--steps', dest='step', action='append', required=False,
                         help='chose steps instead of running everything')
 
@@ -32,10 +30,7 @@ if __name__=="__main__":
     args = parser.parse_args()
 
     # set up configuration object for all steps. this sets up logging as well
-    if args.config:
-        Configuration = Config(args.config)
-    else:
-        Configuration = Config()
+    Configuration = Config()
 
 
     if args.infile == None:

@@ -6,6 +6,7 @@ import string
 import random
 from scipy import stats
 import pandas as pd
+from python_bits.helpers import clean_dir
 
 def _get_eigens(Configuration, resolution, output_dir):
     hic_file = os.path.join(Configuration.Juicebox_dir, Configuration.file_to_process, Configuration.file_to_process + ".allValidPairs.hic")
@@ -48,6 +49,7 @@ def call_compartments(Configuration):
         logging.info(f"Calling compartments for resolution {resolution}kb")
         output_dir = os.path.join(Configuration.compartments_loc,Configuration.file_to_process,str(resolution)+"kb")
         os.makedirs(output_dir,exist_ok = True)
+        clean_dir(output_dir)
 
         eignes = _get_eigens(Configuration, resolution, output_dir)
         if resolution == 100:

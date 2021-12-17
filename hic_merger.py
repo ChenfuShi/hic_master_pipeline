@@ -21,8 +21,6 @@ if __name__=="__main__":
                         help='call multiple times for each file you want to merge', required=True)
     parser.add_argument('-o','--output', dest="output", action='store', 
                         help='name of the output file', required=True)                  
-    parser.add_argument("-c",'--config', dest='config', action='store', required=False,
-                        help='Change configuration file')
     parser.add_argument("-s",'--steps', dest='step', action='append', required=False,
                         help='chose steps instead of running everything. Currently not implemented')
 
@@ -30,10 +28,7 @@ if __name__=="__main__":
     args = parser.parse_args()
 
     # set up configuration object for all steps. this sets up logging as well
-    if args.config:
-        Configuration = Config(args.config)
-    else:
-        Configuration = Config()
+    Configuration = Config()
 
     Configuration.merged_output = args.output
     # check if we can find all folders that we need
