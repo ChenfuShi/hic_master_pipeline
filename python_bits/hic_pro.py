@@ -57,7 +57,7 @@ def run_juicebox(Configuration,overwrite_hic = None):
     clean_dir(juicebox_output)
     proc = subprocess.run([Configuration.hicpro2juicebox_loc,"-j",Configuration.juicer_tools_loc,
         "-i",hic_pro_output_file,"-t",os.path.join(Configuration.HiC_pro_temp_dir,random_string),"-g","hg38"],cwd = juicebox_output)
-    if "gz" in hic_pro_output_file:
+    if ".gz." in hic_pro_output_file:
         proc = subprocess.run(["mv", Configuration.file_to_process + ".allValidPairs.gz.hic", Configuration.file_to_process + ".allValidPairs.hic"],cwd = juicebox_output)
     logging.info("Conversion finished")
 
