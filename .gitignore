@@ -1,3 +1,4 @@
 logs
 *.pyc
 __pycache__
+big_merger_scripts

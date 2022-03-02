@@ -22,4 +22,4 @@ module load compilers/gcc/8.2.0
 
 # wait 20 seconds so that they don't crash into eachother
 sleep $(($INDEX*20))
-python ./master_hic_processor.py -i PsAtest_CD8_ARIMA
+python ./master_hic_processor.py 
