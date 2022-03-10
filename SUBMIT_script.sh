@@ -3,7 +3,7 @@
 #$ -j y
 #$ -o /mnt/iusers01/jw01/mdefscs4/psa_functional_genomics/master_HiC_analyzer/master_pipeline/logs
 
-#$ -t 1-1
+#$ -t 1-7
 INDEX=$((SGE_TASK_ID-1))
 # CD to directory
 cd /mnt/iusers01/jw01/mdefscs4/psa_functional_genomics/master_HiC_analyzer/master_pipeline
@@ -11,7 +11,7 @@ cd /mnt/iusers01/jw01/mdefscs4/psa_functional_genomics/master_HiC_analyzer/maste
 
 # activate all neeeded modules and packages
 # source activate personal_software
-source activate /mnt/iusers01/jw01/mdefscs4/communal_software/HiC-Pro/conda_hicpro3
+source activate /mnt/jw01-aruk-home01/projects/functional_genomics/bin/HiC-Pro/conda_hicpro3
 # this contains fastp, ontad, bedtools
 # other stuff for hicpro is automatically used
 
