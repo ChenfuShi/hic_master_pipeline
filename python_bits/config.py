@@ -23,6 +23,7 @@ class Config:
         self.HiC_pro_outs_dir = "/mnt/jw01-aruk-home01/projects/psa_functional_genomics/master_HiC_analyzer/hic-pro_outputs"
         self.HiC_pro_temp_dir = "/mnt/iusers01/jw01/mdefscs4/scratch/master_HiC_analyzer/hic-pro_outputs"
         self.Juicebox_dir = "/mnt/jw01-aruk-home01/projects/psa_functional_genomics/master_HiC_analyzer/juiceboxes"
+        self.cool_dir = "/mnt/jw01-aruk-home01/projects/psa_functional_genomics/master_HiC_analyzer/cool"
         self.TADs_dir = "/mnt/jw01-aruk-home01/projects/psa_functional_genomics/master_HiC_analyzer/TADs"
         self.Reads_quality_dir = "/mnt/jw01-aruk-home01/projects/psa_functional_genomics/master_HiC_analyzer/fastp_reports"
         self.HiC_pro_loc = "/mnt/jw01-aruk-home01/projects/functional_genomics/bin/HiC-Pro/HiC-Pro_3.0.0_install/HiC-Pro_3.0.0/bin/HiC-Pro"
