@@ -32,9 +32,10 @@ def run_hic_pro(Configuration):
     proc = subprocess.run([Configuration.HiC_pro_loc,"-i",trimmed_files,
         "-o", temp_loc, "-c",configuration_file])
 
-    logging.info("HiC-pro finished, now copying files over to output directory. This drops the BAM files")
-    proc = subprocess.run("rm -r " + temp_loc+"/bowtie_results/bwt2_*",shell=True)
-    proc = subprocess.run("rm " + temp_loc+"/bowtie_results/bwt2/*/*.bam",shell=True)
+    logging.info("HiC-pro finished, now copying files over to output directory. This drops the BAM files if keep_hicpro_align is false")
+    if not Configuration.keep_hicpro_align:
+        proc = subprocess.run("rm -r " + temp_loc+"/bowtie_results/bwt2_*",shell=True)
+        proc = subprocess.run("rm " + temp_loc+"/bowtie_results/bwt2/*/*.bam",shell=True)
     proc = subprocess.run(["mv",temp_loc,final_loc])
     logging.info("HiC-pro step done and files moved to output directory")
 

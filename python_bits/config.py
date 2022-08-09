@@ -40,7 +40,8 @@ class Config:
         self.HiC_pro_HIND = "/mnt/jw01-aruk-home01/projects/functional_genomics/bin/HiC-Pro/HiC-Pro_3.0.0_install/HiC-Pro_3.0.0/HICPRO_config_HindIII_HiC.txt"
         self.HiC_pro_MBOI = "/mnt/jw01-aruk-home01/projects/functional_genomics/bin/HiC-Pro/HiC-Pro_3.0.0_install/HiC-Pro_3.0.0/HICPRO_config_MboI_HiChIP.txt"
         self.HiC_pro_ARIMA = "/mnt/jw01-aruk-home01/projects/functional_genomics/bin/HiC-Pro/HiC-Pro_3.0.0_install/HiC-Pro_3.0.0/HICPRO_config_Arima_HiC.txt"
-    
+        self.keep_hicpro_align = False
+        
         self._init_logging()
 
         self.file_to_process = None

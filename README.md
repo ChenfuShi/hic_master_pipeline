@@ -37,3 +37,4 @@ bowtie2: 2.4.2
 ontad: v1.2
 java: 1.8.0
 juicertools: 1.22.01
+hic2cool: 0.8.3
