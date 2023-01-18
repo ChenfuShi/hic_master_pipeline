@@ -3,7 +3,7 @@
 #$ -j y
 #$ -o /mnt/iusers01/jw01/mdefscs4/psa_functional_genomics/master_HiC_analyzer/master_pipeline/logs
 
-#$ -t 1-7
+#$ -t 1-1
 INDEX=$((SGE_TASK_ID-1))
 # CD to directory
 cd /mnt/iusers01/jw01/mdefscs4/psa_functional_genomics/master_HiC_analyzer/master_pipeline
@@ -22,4 +22,4 @@ module load compilers/gcc/8.2.0
 
 # wait 20 seconds so that they don't crash into eachother
 sleep $(($INDEX*20))
-python ./master_hic_processor.py 
+python ./master_hic_processor_allele.py

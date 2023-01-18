@@ -36,4 +36,6 @@ module load compilers/gcc/8.2.0
 
 # python hic_merger.py -o all_cartilage -i H_Cart_ARIMA -i P663H_Cart_ARIMA -i P674H_Cart_ARIMA
 
-python hic_merger.py -o all_jurkat -i JurkatE6_1_ARIMA -i Jurkat_all_old_ARIMA
+# python hic_merger.py -o all_jurkat -i JurkatE6_1_ARIMA -i Jurkat_all_old_ARIMA
+
+python hic_merger.py -o all_cartilage_oct_2022 -i H_Cart_ARIMA -i P663H_Cart_ARIMA -i P674H_Cart_ARIMA -i P698_ARIMA -i P702_ARIMA -i P710_ARIMA -i P713_ARIMA -i P714_ARIMA -i P718_ARIMA
